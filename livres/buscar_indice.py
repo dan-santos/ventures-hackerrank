@@ -12,7 +12,22 @@ galera
 https://media.geeksforgeeks.org/wp-content/uploads/20220309171621/BinarySearch.png
 """
 def buscar_indice_binaria_recursiva(valor_buscado: int, lista: list) -> int:
-    ...
+    
+    inicio=0
+    fim=len(lista)-1
+    meio=(inicio+fim)//2
+    print(meio)
+    print(lista)
+    if meio < 0:
+        return -1
+    if lista[meio]==valor_buscado:
+        return meio
+    elif valor_buscado < lista[meio]:
+        fim=meio-1
+        return buscar_indice_binaria_recursiva(valor_buscado, lista[0:fim])
+    elif valor_buscado > lista[meio]:
+        inicio=meio+1
+        return buscar_indice_binaria_recursiva(valor_buscado, lista[inicio:fim])
 
 """
 O (log n) <- complexidade de tempo
@@ -58,4 +73,4 @@ print(lista1)
 valor_buscado = int(input('Valor para buscar na lista: '))
 
 #print(f' (l) O valor {valor_buscado} está presente na lista no índice {buscar_indice_linear(valor_buscado, lista)}.')
-print(f' (b) O valor {valor_buscado} está presente na lista no índice {buscar_indice_binaria(valor_buscado, lista1)}.')
+print(f' (b) O valor {valor_buscado} está presente na lista no índice {buscar_indice_binaria_recursiva(valor_buscado, lista1)}.')
