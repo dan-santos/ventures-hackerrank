@@ -16,8 +16,6 @@ def buscar_indice_binaria_recursiva(valor_buscado: int, lista: list) -> int:
     inicio=0
     fim=len(lista)-1
     meio=(inicio+fim)//2
-    print(meio)
-    print(lista)
     if meio < 0:
         return -1
     if lista[meio]==valor_buscado:
@@ -59,8 +57,6 @@ def buscar_indice_linear(valor_buscado: int, lista: list) -> int:
         if lista[i] == valor_buscado:
             return i
     return -1
-    
-
 
 lista =  list(range(1000))
 lista = sample(lista, 50)
