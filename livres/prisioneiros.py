@@ -13,28 +13,35 @@
 
 from random import shuffle
 
-n = 50
+n = 100
 prisioneiros = list(range(n))
 
+simulacoes = int(input('Qtd de simulações: '))
+
 caixas = prisioneiros.copy()
-shuffle(caixas)
+sucessos = 0
 
-print(prisioneiros)
-print(caixas)
+for iteracao in range(simulacoes):
+    flag_prisioneiros = True
+    shuffle(caixas)
+    for prisioneiro in prisioneiros:
+        flag_prisioneiro = False
+        tentativa = prisioneiro
 
-prisioneiro = 0
-tentativa = prisioneiro
-flag_prisioneiro = False
-flag_prisioneiros = False
+        for i in range(n//2): # = Metade do número de prisioneiros
+            # Verifica se o conteúdo da caixa é igual ao seu próprio número
+            if caixas[tentativa] == prisioneiro:
+                flag_prisioneiro = True            
+                break
+            # Caso contrário, a próxima caixa é a caixa com o número descoberto na caixa anterior
+            else:
+                tentativa = caixas[tentativa]
 
+        if flag_prisioneiro is False:
+            flag_prisioneiros = False
+            break
 
-for i in range(n//2): # = Metade do número de prisioneiros
-    # Verifica se o conteúdo da caixa é igual ao seu próprio número
-    if caixas[tentativa] == prisioneiro:
-        flag_prisioneiro = True
-        print('Passei aqui')
-        break
-    # Caso contrário, a próxima caixa é a caixa com o número descoberto na caixa anterior
-    else:
-        tentativa = caixas[tentativa]
+    if flag_prisioneiros:
+        sucessos += 1
 
+print(f'Taxa de sucesso: {(sucessos/simulacoes)*100}')
